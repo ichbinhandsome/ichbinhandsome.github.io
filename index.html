@@ -282,7 +282,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2020-08-05 19:05:38 / Modified: 19:40:16" itemprop="dateCreated datePublished" datetime="2020-08-05T19:05:38+02:00">2020-08-05</time>
+              <time title="Created: 2020-08-05 19:05:38 / Modified: 19:43:43" itemprop="dateCreated datePublished" datetime="2020-08-05T19:05:38+02:00">2020-08-05</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -303,7 +303,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h4 id="问题："><a href="#问题：" class="headerlink" title="问题："></a>问题：</h4><p>在使用 <code>hexo + next-theme</code> 在收尾阶段碰到一点小问题，菜单栏的<code>tags</code>和 <code>categories</code> 链接无法正常显示，而是直接跳转到404页面。</p>
+          <h4 id="问题："><a href="#问题：" class="headerlink" title="问题："></a>问题：</h4><p>使用 <code>hexo + next-theme + Github Page</code>搭建博客在收尾阶段碰到一点小问题，菜单栏的<code>Tags</code>和 <code>Categories</code> 链接无法正常显示，而是直接跳转到404页面。</p>
 <h4 id="解决方法："><a href="#解决方法：" class="headerlink" title="解决方法："></a>解决方法：</h4><ul>
 <li><p>hexo 默认 <code>source</code> 文件中是没有 <code>tags</code> 和 <code>categories</code> 对应的page文件的，我们需要先手动进行创建，使用命令行:</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo new page categories</span><br><span class="line">hexo new page tags</span><br></pre></td></tr></table></figure></li>
@@ -314,7 +314,7 @@
   <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">tags: hello world</span><br><span class="line">categories: hello world</span><br></pre></td></tr></table></figure>
 <br/>
 </li>
-<li><p>使用 <code>hexo g</code>重新生成静态文件，再重新部署 <code> hexo d</code>，打开博客，可以看到菜单中 <code>tags</code> 和 <code>categories</code> 成功生成。 </p>
+<li><p>使用 <code>hexo g</code>重新生成静态文件，再重新部署 <code> hexo d</code>，打开博客，可以看到菜单中 <code>Tags</code> 和 <code>Categories</code> 成功生成。 </p>
 </li>
 </ul>
 
