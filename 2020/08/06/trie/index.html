@@ -22,30 +22,33 @@
     var CONFIG = {"hostname":"ichbinhandsome.github.io","root":"/","scheme":"Gemini","version":"8.0.0-rc.5","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false};
   </script>
 
-  <meta name="description" content="somthing interesting">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Ruixiang&#39;s blog">
-<meta property="og:url" content="https://ichbinhandsome.github.io/index.html">
+  <meta name="description" content="Problem:Implement a trie with insert, search, and startsWith methods. Example: 12345678Trie trie &#x3D; new Trie();trie.insert(&quot;apple&quot;);trie.search(&quot;apple&quot;);   &#x2F;&#x2F; returns truetrie.searc">
+<meta property="og:type" content="article">
+<meta property="og:title" content="trie">
+<meta property="og:url" content="https://ichbinhandsome.github.io/2020/08/06/trie/index.html">
 <meta property="og:site_name" content="Ruixiang&#39;s blog">
-<meta property="og:description" content="somthing interesting">
+<meta property="og:description" content="Problem:Implement a trie with insert, search, and startsWith methods. Example: 12345678Trie trie &#x3D; new Trie();trie.insert(&quot;apple&quot;);trie.search(&quot;apple&quot;);   &#x2F;&#x2F; returns truetrie.searc">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-08-06T16:25:16.000Z">
+<meta property="article:modified_time" content="2020-08-06T16:26:26.998Z">
 <meta property="article:author" content="Ruixiang wang">
+<meta property="article:tag" content="leetcode">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://ichbinhandsome.github.io/">
+<link rel="canonical" href="https://ichbinhandsome.github.io/2020/08/06/trie/">
 
 
 <script class="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome : true,
-    isPost : false,
+    isHome : false,
+    isPost : true,
     lang   : 'en'
   };
 </script>
 
-  <title>Ruixiang's blog</title>
+  <title>trie | Ruixiang's blog</title>
   
 
 
@@ -167,7 +170,7 @@
 
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           Table of Contents
@@ -179,6 +182,7 @@
 
       <!--noindex-->
       <section class="post-toc-wrap sidebar-panel">
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Problem"><span class="nav-number">1.</span> <span class="nav-text">Problem:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Methods-amp-Solutions"><span class="nav-number">2.</span> <span class="nav-text">Methods &amp; Solutions:</span></a></li></ol></div>
       </section>
       <!--/noindex-->
 
@@ -249,9 +253,10 @@
       <div class="main-inner">
         
 
-        <div class="content index posts-expand">
+        <div class="content post posts-expand">
           
-      
+
+    
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
@@ -269,10 +274,9 @@
 
     
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/08/06/trie/" class="post-title-link" itemprop="url">trie</a>
-        </h2>
+        <h1 class="post-title" itemprop="name headline">
+          trie
+        </h1>
 
         <div class="post-meta">
             <span class="post-meta-item">
@@ -310,7 +314,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h3 id="Problem"><a href="#Problem" class="headerlink" title="Problem:"></a>Problem:</h3><p>Implement a trie with <code>insert</code>, <code>search</code>, and <code>startsWith</code> methods.</p>
+        <h3 id="Problem"><a href="#Problem" class="headerlink" title="Problem:"></a>Problem:</h3><p>Implement a trie with <code>insert</code>, <code>search</code>, and <code>startsWith</code> methods.</p>
 <p><em>Example:</em></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Trie trie = <span class="keyword">new</span> Trie();</span><br><span class="line"></span><br><span class="line">trie.insert(<span class="string">&quot;apple&quot;</span>);</span><br><span class="line">trie.search(<span class="string">&quot;apple&quot;</span>);   <span class="comment">// returns true</span></span><br><span class="line">trie.search(<span class="string">&quot;app&quot;</span>);     <span class="comment">// returns false</span></span><br><span class="line">trie.startsWith(<span class="string">&quot;app&quot;</span>); <span class="comment">// returns true</span></span><br><span class="line">trie.insert(<span class="string">&quot;app&quot;</span>);   </span><br><span class="line">trie.search(<span class="string">&quot;app&quot;</span>);     <span class="comment">// returns true</span></span><br></pre></td></tr></table></figure>
 
@@ -341,203 +345,62 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Trie</span>:</span></span><br><span class="line">    <span class="comment"># use dict to implement Trie</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        Initialize your data structure here.</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        self.root = &#123;&#125; <span class="comment"># root node</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">insert</span>(<span class="params">self, word: str</span>) -&gt; <span class="keyword">None</span>:</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        Inserts a word into the trie.</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        p = self.root <span class="comment"># begin from root node</span></span><br><span class="line">        <span class="keyword">for</span> w <span class="keyword">in</span> word:</span><br><span class="line">            <span class="keyword">if</span> w <span class="keyword">not</span> <span class="keyword">in</span> p:</span><br><span class="line">                p[w] = &#123;&#125; <span class="comment"># add new node into current node</span></span><br><span class="line">            p = p[w] <span class="comment"># update current node</span></span><br><span class="line">            </span><br><span class="line">        <span class="comment"># set &#x27;#&#x27; as the end signal, add into current node</span></span><br><span class="line">        p[<span class="string">&#x27;#&#x27;</span>] = <span class="literal">True</span> </span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">find</span>(<span class="params">self, prefix</span>):</span> <span class="comment"># helper fuction to judge if the prefix in Trie</span></span><br><span class="line">        p = self.root</span><br><span class="line">        <span class="keyword">for</span> w <span class="keyword">in</span> prefix:</span><br><span class="line">            <span class="keyword">if</span> w <span class="keyword">not</span> <span class="keyword">in</span> p: <span class="keyword">return</span> <span class="literal">None</span></span><br><span class="line">            p = p[w]</span><br><span class="line">        <span class="keyword">return</span> p</span><br><span class="line">           </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">search</span>(<span class="params">self, word: str</span>) -&gt; bool:</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        Returns if the word is in the trie.</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        <span class="keyword">return</span> self.find(word) <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span> <span class="keyword">and</span> <span class="string">&#x27;#&#x27;</span> <span class="keyword">in</span> self.find(word)  </span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">startsWith</span>(<span class="params">self, prefix: str</span>) -&gt; bool:</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        Returns if there is any word in the trie that starts with the given prefix.</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        <span class="keyword">return</span> self.find(prefix) <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span></span><br></pre></td></tr></table></figure>
 
 
-      
     </div>
 
     
     
     
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
+        
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://ichbinhandsome.github.io/2020/08/05/%E8%A7%A3%E5%86%B3%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E4%B8%ADtags%E5%92%8Ccategories%E9%A1%B5%E9%9D%A2404/">
+  <div class="followme">
+    <p>Welcome to my other publishing channels</p>
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Ruixiang wang">
-      <meta itemprop="description" content="somthing interesting">
-    </span>
+    <div class="social-list">
 
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ruixiang's blog">
-    </span>
-
-    
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/08/05/%E8%A7%A3%E5%86%B3%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E4%B8%ADtags%E5%92%8Ccategories%E9%A1%B5%E9%9D%A2404/" class="post-title-link" itemprop="url">解决搭建博客中tags和categories页面404</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2020-08-05 19:05:38 / Modified: 19:43:43" itemprop="dateCreated datePublished" datetime="2020-08-05T19:05:38+02:00">2020-08-05</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/hexo/" itemprop="url" rel="index"><span itemprop="name">hexo</span></a>
-                </span>
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="https://github.com/ichbinhandsome">
+            <span class="icon">
+              <i class="fab fa-github"></i>
             </span>
 
-          
-            <span id="/2020/08/05/%E8%A7%A3%E5%86%B3%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E4%B8%ADtags%E5%92%8Ccategories%E9%A1%B5%E9%9D%A2404/" class="post-meta-item leancloud_visitors" data-flag-title="解决搭建博客中tags和categories页面404" title="Views">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">Views: </span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-
+            <span class="label">GitHub</span>
+          </a>
         </div>
-      </header>
 
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h4 id="问题："><a href="#问题：" class="headerlink" title="问题："></a>问题：</h4><p>使用 <code>hexo + next-theme + Github Page</code>搭建博客在收尾阶段碰到一点小问题，菜单栏的<code>Tags</code>和 <code>Categories</code> 链接无法正常显示，而是直接跳转到404页面。</p>
-<h4 id="解决方法："><a href="#解决方法：" class="headerlink" title="解决方法："></a>解决方法：</h4><ul>
-<li><p>hexo 默认 <code>source</code> 文件中是没有 <code>tags</code> 和 <code>categories</code> 对应的page文件的，我们需要先手动进行创建，使用命令行:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo new page categories</span><br><span class="line">hexo new page tags</span><br></pre></td></tr></table></figure></li>
-<li><p>接下来设置在<code>source</code> 目录下的<code>tags\index.md</code> 和 <code>categories\index.md</code> 文件。 在文件最上方的 <code>front-matter</code>（顶部代码片段）中加上对应的<code>type</code> 类型。 比如对于<code>tags\index.md</code> 加上<code> type: tags</code>,  对于<code>categories\index.md</code>加上 <code>type: categories</code>。</p>
-<br/>
-</li>
-<li><p>测试： 使用 <code>hexo new xxx</code> 新建一个博客文章，在文件最上方的 <code>front-matter</code>（顶部代码片段）中加上对应的<code>tags</code> 和 <code>categories</code>, 比如：</p>
-  <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">tags: hello world</span><br><span class="line">categories: hello world</span><br></pre></td></tr></table></figure>
-<br/>
-</li>
-<li><p>使用 <code>hexo g</code>重新生成静态文件，再重新部署 <code> hexo d</code>，打开博客，可以看到菜单中 <code>Tags</code> 和 <code>Categories</code> 成功生成。 </p>
-</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://ichbinhandsome.github.io/2020/08/04/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Ruixiang wang">
-      <meta itemprop="description" content="somthing interesting">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ruixiang's blog">
-    </span>
-
-    
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/08/04/hello-world/" class="post-title-link" itemprop="url">Hello World</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2020-08-04 23:02:42" itemprop="dateCreated datePublished" datetime="2020-08-04T23:02:42+02:00">2020-08-04</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-08-05 19:00:26" itemprop="dateModified" datetime="2020-08-05T19:00:26+02:00">2020-08-05</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Hello-World/" itemprop="url" rel="index"><span itemprop="name">Hello World</span></a>
-                </span>
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="https://www.zhihu.com/people/besser-46">
+            <span class="icon">
+              <i class="fab fa-zhihu"></i>
             </span>
 
-          
-            <span id="/2020/08/04/hello-world/" class="post-meta-item leancloud_visitors" data-flag-title="Hello World" title="Views">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">Views: </span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-
+            <span class="label">Zhihu</span>
+          </a>
         </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><p>This is a test file to check weather the configuration of this hexo blog works.</p>
-<h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-
-      
     </div>
+  </div>
 
-    
-    
-    
+
       <footer class="post-footer">
-        <div class="post-eof"></div>
+          <div class="post-tags">
+              <a href="/tags/leetcode/" rel="tag"># leetcode</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/08/05/%E8%A7%A3%E5%86%B3%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E4%B8%ADtags%E5%92%8Ccategories%E9%A1%B5%E9%9D%A2404/" rel="prev" title="解决搭建博客中tags和categories页面404">
+      <i class="fa fa-chevron-left"></i> 解决搭建博客中tags和categories页面404
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
       </footer>
+    
   </article>
   
   
-  
-
-
   
 
 
