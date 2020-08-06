@@ -22,20 +22,20 @@
     var CONFIG = {"hostname":"ichbinhandsome.github.io","root":"/","scheme":"Gemini","version":"8.0.0-rc.5","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false};
   </script>
 
-  <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+  <meta name="description" content="Problem:Given an array of integers, 1 ≤ a[i] ≤ n (n &#x3D; size of array), some elements appear twice and others appear once. Find all the elements that appear twice in this array. Could you do it without">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="https://ichbinhandsome.github.io/2020/08/04/hello-world/index.html">
+<meta property="og:title" content="Find All Duplicates in an Array">
+<meta property="og:url" content="https://ichbinhandsome.github.io/2020/08/07/Duplicates/index.html">
 <meta property="og:site_name" content="Ruixiang&#39;s blog">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta property="og:description" content="Problem:Given an array of integers, 1 ≤ a[i] ≤ n (n &#x3D; size of array), some elements appear twice and others appear once. Find all the elements that appear twice in this array. Could you do it without">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-08-04T21:02:42.573Z">
-<meta property="article:modified_time" content="2020-08-06T16:31:16.548Z">
+<meta property="article:published_time" content="2020-08-06T22:35:26.000Z">
+<meta property="article:modified_time" content="2020-08-06T23:08:33.570Z">
 <meta property="article:author" content="Ruixiang wang">
-<meta property="article:tag" content="Hello World">
+<meta property="article:tag" content="leetcode">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://ichbinhandsome.github.io/2020/08/04/hello-world/">
+<link rel="canonical" href="https://ichbinhandsome.github.io/2020/08/07/Duplicates/">
 
 
 <script class="page-configurations">
@@ -48,7 +48,7 @@
   };
 </script>
 
-  <title>Hello World | Ruixiang's blog</title>
+  <title>Find All Duplicates in an Array | Ruixiang's blog</title>
   
 
 
@@ -182,7 +182,7 @@
 
       <!--noindex-->
       <section class="post-toc-wrap sidebar-panel">
-          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Quick-Start"><span class="nav-number">1.</span> <span class="nav-text">Quick Start</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Create-a-new-post"><span class="nav-number">1.1.</span> <span class="nav-text">Create a new post</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Run-server"><span class="nav-number">1.2.</span> <span class="nav-text">Run server</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Generate-static-files"><span class="nav-number">1.3.</span> <span class="nav-text">Generate static files</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Deploy-to-remote-sites"><span class="nav-number">1.4.</span> <span class="nav-text">Deploy to remote sites</span></a></li></ol></li></ol></div>
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Problem"><span class="nav-number">1.</span> <span class="nav-text">Problem:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Solutions"><span class="nav-number">2.</span> <span class="nav-text">Solutions:</span></a></li></ol></div>
       </section>
       <!--/noindex-->
 
@@ -260,7 +260,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://ichbinhandsome.github.io/2020/08/04/hello-world/">
+    <link itemprop="mainEntityOfPage" href="https://ichbinhandsome.github.io/2020/08/07/Duplicates/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -275,7 +275,7 @@
     
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Hello World
+          Find All Duplicates in an Array
         </h1>
 
         <div class="post-meta">
@@ -284,28 +284,22 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
+              
 
-              <time title="Created: 2020-08-04 23:02:42" itemprop="dateCreated datePublished" datetime="2020-08-04T23:02:42+02:00">2020-08-04</time>
+              <time title="Created: 2020-08-07 00:35:26 / Modified: 01:08:33" itemprop="dateCreated datePublished" datetime="2020-08-07T00:35:26+02:00">2020-08-07</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-08-06 18:31:16" itemprop="dateModified" datetime="2020-08-06T18:31:16+02:00">2020-08-06</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
               </span>
               <span class="post-meta-item-text">In</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Hello-World/" itemprop="url" rel="index"><span itemprop="name">Hello World</span></a>
+                  <a href="/categories/Data-structure-Algorithm/" itemprop="url" rel="index"><span itemprop="name">Data structure & Algorithm</span></a>
                 </span>
             </span>
 
           
-            <span id="/2020/08/04/hello-world/" class="post-meta-item leancloud_visitors" data-flag-title="Hello World" title="Views">
+            <span id="/2020/08/07/Duplicates/" class="post-meta-item leancloud_visitors" data-flag-title="Find All Duplicates in an Array" title="Views">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -320,22 +314,36 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><p>This is a test file to check weather the configuration of this hexo blog works.</p>
+        <h3 id="Problem"><a href="#Problem" class="headerlink" title="Problem:"></a>Problem:</h3><p>Given an array of integers, 1 ≤ a[i] ≤ <em>n</em> (<em>n</em> = size of array), some elements appear <strong>twice</strong> and others appear <strong>once</strong>.</p>
+<p>Find all the elements that appear <strong>twice</strong> in this array.</p>
+<p>Could you do it without extra space and in O(<em>n</em>) runtime?</p>
+<p><em>Example:</em></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Input:</span><br><span class="line">[<span class="number">4</span>,<span class="number">3</span>,<span class="number">2</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">1</span>]</span><br><span class="line"></span><br><span class="line">Output:</span><br><span class="line">[<span class="number">2</span>,<span class="number">3</span>]</span><br></pre></td></tr></table></figure>
+
+<h3 id="Solutions"><a href="#Solutions" class="headerlink" title="Solutions:"></a>Solutions:</h3><p>This is a very confusing question, since we must solve it in  O(<em>n</em>) runtime without extra space. Obviously, the easiest way is to use <code>hash set</code>, which needs extra space. Here we will construct two different tricky hash functions within the original array, which will  simulate the process of <code>hash set</code>.</p>
 <a id="more"></a>
 
-<h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>negative-positive hash function</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Traverse the array. Do following for every index i of A[].</span><br><span class="line">&#123;</span><br><span class="line">&#x2F;&#x2F; Since 1 ≤ a[i] ≤ n (n &#x3D; size of array), so we must use abs(A[i])-1 as target index for element A[i], otherwise, list index out of range</span><br><span class="line">check for sign of A[abs(A[i])-1] ;</span><br><span class="line">if positive then</span><br><span class="line">   make it negative by   A[abs(A[i])-1]&#x3D; -A[abs(A[i])-1];</span><br><span class="line">else  &#x2F;&#x2F; i.e., A[abs(A[i])-1] is negative</span><br><span class="line">   this   element (ith element of list) is a repetition</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">Example: A[] &#x3D;  &#123;1, 1, 2, 3, 2&#125;</span><br><span class="line">i&#x3D;0; </span><br><span class="line">Check sign of A[abs(A[0])-1] which is A[0].  A[0] is positive, so make it negative. </span><br><span class="line">Array now becomes &#123;-1, 1, 2, 3, 2&#125;</span><br><span class="line"></span><br><span class="line">i&#x3D;1; </span><br><span class="line">Check sign of A[abs(A[1])-1] which is A[0].  A[0] is negative, so A[1] is a repetition.</span><br><span class="line"></span><br><span class="line">i&#x3D;2; </span><br><span class="line">Check sign of A[abs(A[2])-1] which is A[1].  A[1] is  positive, so make it negative. &#39;</span><br><span class="line">Array now becomes &#123;1, -1, 2, 3, 2&#125;</span><br><span class="line"></span><br><span class="line">i&#x3D;3; </span><br><span class="line">Check sign of A[abs(A[3])-1] which is A[2].  A[2] is  positive, so make it negative. </span><br><span class="line">Array now becomes &#123;1, -1, -2, 3, 2&#125;</span><br><span class="line"></span><br><span class="line">i&#x3D;4; </span><br><span class="line">Check sign of A[abs(A[4])-1] which is A[1].  A[1] is negative, so A[4] is a repetition.</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">findDuplicates</span>(<span class="params">self, nums: List[int]</span>) -&gt; List[int]:</span></span><br><span class="line">        res = []</span><br><span class="line">        <span class="keyword">for</span> x <span class="keyword">in</span> nums:</span><br><span class="line">             <span class="keyword">if</span> nums[abs(x)<span class="number">-1</span>] &lt; <span class="number">0</span>:</span><br><span class="line">                 res.append(abs(x))</span><br><span class="line">             <span class="keyword">else</span>:</span><br><span class="line">                 nums[abs(x)<span class="number">-1</span>] *= <span class="number">-1</span></span><br><span class="line">         <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<br>
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+<ul>
+<li><p>add-length hash function</p>
+<p>This idea of this method is similar to the first one, which also construct a hash function within the array. Instead of making target index for element A[i] negative, we add the <code>len(A)</code> into it,  i.e. <code>A[A[i] % len(A)] += len(A)</code>. If one element occurs twice, so <code>A[A[i] % len(A)] &gt; 2*len(A)</code>. We use two loops, the first loop we add <code>len(A)</code> to the corresponding target of <code>A[i]</code>, the second loop we will traverse the modified <code>A</code>, and find all elements satisfied <code>A[A[i] % len(A)] &gt; 2*len(A)</code> as result.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">findDuplicates</span>(<span class="params">self, nums: List[int]</span>) -&gt; List[int]:</span></span><br><span class="line">        res = []</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(nums)):</span><br><span class="line">            nums[(nums[i]<span class="number">-1</span>) % len(nums)] += len(nums)</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(nums)):</span><br><span class="line">            <span class="keyword">if</span> nums[i] &gt; <span class="number">2</span>*len(nums):</span><br><span class="line">                res.append(i+<span class="number">1</span>)</span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
 
     </div>
 
@@ -374,7 +382,7 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/Hello-World/" rel="tag"># Hello World</a>
+              <a href="/tags/leetcode/" rel="tag"># leetcode</a>
           </div>
 
         
@@ -382,11 +390,11 @@
 
         
     <div class="post-nav">
-      <div class="post-nav-item"></div>
       <div class="post-nav-item">
-    <a href="/2020/08/05/%E8%A7%A3%E5%86%B3%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E4%B8%ADtags%E5%92%8Ccategories%E9%A1%B5%E9%9D%A2404/" rel="next" title="解决搭建博客中tags和categories页面404">
-      解决搭建博客中tags和categories页面404 <i class="fa fa-chevron-right"></i>
+    <a href="/2020/08/06/trie/" rel="prev" title="Implement Trie (Prefix Tree)">
+      <i class="fa fa-chevron-left"></i> Implement Trie (Prefix Tree)
     </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
