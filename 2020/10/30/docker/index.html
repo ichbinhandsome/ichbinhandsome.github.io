@@ -34,10 +34,8 @@
 <meta property="og:image" content="https://raw.githubusercontent.com/ichbinhandsome/images/main/67d348ec911d8f6ccab45f3183a76c7.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/ichbinhandsome/images/main/62eed5796896de9224f843390e64784.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/ichbinhandsome/images/main/bf26e3f822828ad852ddb96857d84b6.jpg">
-<meta property="og:image" content="https://raw.githubusercontent.com/ichbinhandsome/images/main/fc0698c8636453aafda9a4e14d4f4ba.jpg">
-<meta property="og:image" content="https://raw.githubusercontent.com/ichbinhandsome/images/main/0e67bcb876b64864052e02c7834a59b.jpg">
 <meta property="article:published_time" content="2020-10-30T09:54:08.000Z">
-<meta property="article:modified_time" content="2020-10-30T10:07:38.969Z">
+<meta property="article:modified_time" content="2020-10-30T10:50:33.842Z">
 <meta property="article:author" content="Ruixiang wang">
 <meta property="article:tag" content="tools">
 <meta name="twitter:card" content="summary">
@@ -294,7 +292,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2020-10-30 17:54:08 / Modified: 18:07:38" itemprop="dateCreated datePublished" datetime="2020-10-30T17:54:08+08:00">2020-10-30</time>
+              <time title="Created: 2020-10-30 17:54:08 / Modified: 18:50:33" itemprop="dateCreated datePublished" datetime="2020-10-30T17:54:08+08:00">2020-10-30</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -350,7 +348,6 @@
 <li>Build, Ship and Run</li>
 <li>Build once，Run anywhere</li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/ichbinhandsome/images/main/fc0698c8636453aafda9a4e14d4f4ba.jpg"></p>
 </li>
 <li><p><strong>Docker 的基本概念</strong></p>
 <ul>
@@ -358,8 +355,7 @@
 <p>镜像（类）= 文件系统+数据，可以用开发语言中的类比作镜像，对象比作容器</p>
 </li>
 <li><p><strong>容器</strong>：容器的实质是进程，但与直接在宿主执行的进程不同，容器进程运行于属于自己的独立的命名空间容器可以被。创建、启动、停止、删除和暂停等等，说到镜像与容器之间的关系，可以类比面向对象程序设计中的类和实例；</p>
-<p>容器是镜像的运行实例，可以使用同一个镜像运行多个实例。如图所示，一个ubuntu docker镜像产生了三个ubuntu容器，docker利用容器运行和隔离应用：</p>
-<p><img src="https://raw.githubusercontent.com/ichbinhandsome/images/main/0e67bcb876b64864052e02c7834a59b.jpg"></p>
+<p>容器是镜像的运行实例，可以使用同一个镜像运行多个实例。</p>
 <p><em>从读写角度来说，镜像是只读的，容器是在镜像上添加了一层可读写的文件系统</em></p>
 </li>
 <li><p><strong>仓库</strong>：镜像构建完成后，可以很容易的在当前宿主机上运行，但是，如果需要在其它服务器上使用这个镜像，我们就需要一个集中的存储、分发镜像的服务，Docker Registry 就是这样的服务。一个 Docker Registry 中可以包含多个仓库；每个仓库可以包含多个标签；每个标签对应一个镜像，其中标签可以理解为镜像的版本号</p>
