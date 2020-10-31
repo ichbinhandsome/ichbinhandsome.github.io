@@ -22,20 +22,20 @@
     var CONFIG = {"hostname":"ichbinhandsome.github.io","root":"/","scheme":"Gemini","version":"8.0.0-rc.5","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false};
   </script>
 
-  <meta name="description" content="Problem:Given an array of integers, 1 ≤ a[i] ≤ n (n &#x3D; size of array), some elements appear twice and others appear once. Find all the elements that appear twice in this array. Could you do it without">
+  <meta name="description" content="IntroductionQuick select is a transformation of quicksort, we can use it to find the $k-th$ element in a list if it exists. The  average time complexity of this algorithm is $O(n)$. We all know that t">
 <meta property="og:type" content="article">
-<meta property="og:title" content="【leetcode】Find All Duplicates in an Array">
-<meta property="og:url" content="https://ichbinhandsome.github.io/2020/08/07/Duplicates/index.html">
+<meta property="og:title" content="【leetcode】Quick select">
+<meta property="og:url" content="https://ichbinhandsome.github.io/2020/10/31/%E5%BF%AB%E9%80%9F%E9%80%89%E6%8B%A9/index.html">
 <meta property="og:site_name" content="Ruixiang&#39;s blog">
-<meta property="og:description" content="Problem:Given an array of integers, 1 ≤ a[i] ≤ n (n &#x3D; size of array), some elements appear twice and others appear once. Find all the elements that appear twice in this array. Could you do it without">
+<meta property="og:description" content="IntroductionQuick select is a transformation of quicksort, we can use it to find the $k-th$ element in a list if it exists. The  average time complexity of this algorithm is $O(n)$. We all know that t">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-08-06T16:35:26.000Z">
-<meta property="article:modified_time" content="2020-10-01T16:25:17.704Z">
+<meta property="article:published_time" content="2020-10-31T08:11:58.000Z">
+<meta property="article:modified_time" content="2020-10-31T09:10:21.548Z">
 <meta property="article:author" content="Ruixiang wang">
 <meta property="article:tag" content="leetcode">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://ichbinhandsome.github.io/2020/08/07/Duplicates/">
+<link rel="canonical" href="https://ichbinhandsome.github.io/2020/10/31/%E5%BF%AB%E9%80%9F%E9%80%89%E6%8B%A9/">
 
 
 <script class="page-configurations">
@@ -48,7 +48,7 @@
   };
 </script>
 
-  <title>【leetcode】Find All Duplicates in an Array | Ruixiang's blog</title>
+  <title>【leetcode】Quick select | Ruixiang's blog</title>
   
 
 
@@ -182,7 +182,7 @@
 
       <!--noindex-->
       <section class="post-toc-wrap sidebar-panel">
-          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Problem"><span class="nav-number">1.</span> <span class="nav-text">Problem:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Solutions"><span class="nav-number">2.</span> <span class="nav-text">Solutions:</span></a></li></ol></div>
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Introduction"><span class="nav-number">1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Quick-Select"><span class="nav-number">2.</span> <span class="nav-text">Quick Select</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Quick-Sort"><span class="nav-number">3.</span> <span class="nav-text">Quick Sort</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Leetcode-examples"><span class="nav-number">4.</span> <span class="nav-text">Leetcode examples:</span></a></li></ol></div>
       </section>
       <!--/noindex-->
 
@@ -260,7 +260,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://ichbinhandsome.github.io/2020/08/07/Duplicates/">
+    <link itemprop="mainEntityOfPage" href="https://ichbinhandsome.github.io/2020/10/31/%E5%BF%AB%E9%80%9F%E9%80%89%E6%8B%A9/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -275,7 +275,7 @@
     
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          【leetcode】Find All Duplicates in an Array
+          【leetcode】Quick select
         </h1>
 
         <div class="post-meta">
@@ -284,16 +284,10 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
+              
 
-              <time title="Created: 2020-08-07 00:35:26" itemprop="dateCreated datePublished" datetime="2020-08-07T00:35:26+08:00">2020-08-07</time>
+              <time title="Created: 2020-10-31 16:11:58 / Modified: 17:10:21" itemprop="dateCreated datePublished" datetime="2020-10-31T16:11:58+08:00">2020-10-31</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-10-02 00:25:17" itemprop="dateModified" datetime="2020-10-02T00:25:17+08:00">2020-10-02</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -305,7 +299,7 @@
             </span>
 
           
-            <span id="/2020/08/07/Duplicates/" class="post-meta-item leancloud_visitors" data-flag-title="【leetcode】Find All Duplicates in an Array" title="Views">
+            <span id="/2020/10/31/%E5%BF%AB%E9%80%9F%E9%80%89%E6%8B%A9/" class="post-meta-item leancloud_visitors" data-flag-title="【leetcode】Quick select" title="Views">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -320,35 +314,35 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h3 id="Problem"><a href="#Problem" class="headerlink" title="Problem:"></a>Problem:</h3><p>Given an array of integers, 1 ≤ a[i] ≤ <em>n</em> (<em>n</em> = size of array), some elements appear <strong>twice</strong> and others appear <strong>once</strong>.</p>
-<p>Find all the elements that appear <strong>twice</strong> in this array.</p>
-<p>Could you do it without extra space and in O(<em>n</em>) runtime?</p>
-<p><em>Example:</em></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Input:</span><br><span class="line">[<span class="number">4</span>,<span class="number">3</span>,<span class="number">2</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">1</span>]</span><br><span class="line"></span><br><span class="line">Output:</span><br><span class="line">[<span class="number">2</span>,<span class="number">3</span>]</span><br></pre></td></tr></table></figure>
-
-<h3 id="Solutions"><a href="#Solutions" class="headerlink" title="Solutions:"></a>Solutions:</h3><p>This is a very confusing question, since we must solve it in  O(<em>n</em>) runtime without extra space. Obviously, the easiest way is to use <code>hash set</code>, which needs extra space. Here we will construct two different tricky hash functions within the original array, which will  simulate the process of <code>hash set</code>.</p>
+        <h3 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h3><p>Quick select is a transformation of quicksort, we can use it to find the $k-th$ element in a list if it exists. The  average time complexity of this algorithm is $O(n)$. We all know that the average time complexity of quick sort is $O(nlogn)$.</p>
+<p>This kind of problem can also be solved by using Max_heap or Min_heap, the time complexity is $O(nlogk)$.</p>
 <a id="more"></a>
 
-<ul>
-<li><p>negative-positive hash function</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Traverse the array. Do following for every index i of A[].</span><br><span class="line">&#123;</span><br><span class="line">&#x2F;&#x2F; Since 1 ≤ a[i] ≤ n (n &#x3D; size of array), so we must use abs(A[i])-1 as target index for element A[i], otherwise, list index out of range</span><br><span class="line">check for sign of A[abs(A[i])-1] ;</span><br><span class="line">if positive then</span><br><span class="line">   make it negative by   A[abs(A[i])-1]&#x3D; -A[abs(A[i])-1];</span><br><span class="line">else  &#x2F;&#x2F; i.e., A[abs(A[i])-1] is negative</span><br><span class="line">   this   element (ith element of list) is a repetition</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">Example: A[] &#x3D;  &#123;1, 1, 2, 3, 2&#125;</span><br><span class="line">i&#x3D;0; </span><br><span class="line">Check sign of A[abs(A[0])-1] which is A[0].  A[0] is positive, so make it negative. </span><br><span class="line">Array now becomes &#123;-1, 1, 2, 3, 2&#125;</span><br><span class="line"></span><br><span class="line">i&#x3D;1; </span><br><span class="line">Check sign of A[abs(A[1])-1] which is A[0].  A[0] is negative, so A[1] is a repetition.</span><br><span class="line"></span><br><span class="line">i&#x3D;2; </span><br><span class="line">Check sign of A[abs(A[2])-1] which is A[1].  A[1] is  positive, so make it negative. &#39;</span><br><span class="line">Array now becomes &#123;1, -1, 2, 3, 2&#125;</span><br><span class="line"></span><br><span class="line">i&#x3D;3; </span><br><span class="line">Check sign of A[abs(A[3])-1] which is A[2].  A[2] is  positive, so make it negative. </span><br><span class="line">Array now becomes &#123;1, -1, -2, 3, 2&#125;</span><br><span class="line"></span><br><span class="line">i&#x3D;4; </span><br><span class="line">Check sign of A[abs(A[4])-1] which is A[1].  A[1] is negative, so A[4] is a repetition.</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">findDuplicates</span>(<span class="params">self, nums: List[int]</span>) -&gt; List[int]:</span></span><br><span class="line">        res = []</span><br><span class="line">        <span class="keyword">for</span> x <span class="keyword">in</span> nums:</span><br><span class="line">             <span class="keyword">if</span> nums[abs(x)<span class="number">-1</span>] &lt; <span class="number">0</span>:</span><br><span class="line">                 res.append(abs(x))</span><br><span class="line">             <span class="keyword">else</span>:</span><br><span class="line">                 nums[abs(x)<span class="number">-1</span>] *= <span class="number">-1</span></span><br><span class="line">         <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
-
-</li>
+<h3 id="Quick-Select"><a href="#Quick-Select" class="headerlink" title="Quick Select"></a>Quick Select</h3><p><em>Input</em>: <code>array nums</code>, <code>int k</code>. (find <code>k-th</code> smallest element in an unsorted array)<br><em>Output</em>: <code>int target</code></p>
+<blockquote>
+<ol>
+<li>Choose an element from the array as pivot, exchange the position of pivot and number at the end of the array.<ul>
+<li><em>The pivot can either be the end element or a random chosen element. A random chosen pivot can make the algorithm much possibly run in average case time.</em></li>
 </ul>
-<br>
-
-<ul>
-<li><p>add-length hash function</p>
-<p>This idea of this method is similar to the first one, which also construct a hash function within the array. Instead of making target index for element A[i] negative, we add the <code>len(A)</code> into it,  i.e. <code>A[A[i] % len(A)] += len(A)</code>. If one element occurs twice, so <code>A[A[i] % len(A)] &gt; 2*len(A)</code>. We use two loops, the first loop we add <code>len(A)</code> to the corresponding target of <code>A[i]</code>, the second loop we will traverse the modified <code>A</code>, and find all elements satisfied <code>A[A[i] % len(A)] &gt; 2*len(A)</code> as result.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">findDuplicates</span>(<span class="params">self, nums: List[int]</span>) -&gt; List[int]:</span></span><br><span class="line">        res = []</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(nums)):</span><br><span class="line">            nums[(nums[i]<span class="number">-1</span>) % len(nums)] += len(nums)</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(nums)):</span><br><span class="line">            <span class="keyword">if</span> nums[i] &gt; <span class="number">2</span>*len(nums):</span><br><span class="line">                res.append(i+<span class="number">1</span>)</span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
-
-
-
 </li>
+<li>Partition the array into 2 parts in which the numbers in left subarray is less than (or equal to) the pivot and the numbers in right subarray is greater than (or equal to) the pivot.</li>
+<li>Exchange pivot (at the end of the array now) with the first element in the right part.</li>
+<li>Compare k with length of the left subarray, say, len.<ul>
+<li>if <code>k == len + 1</code>， then pivot is the target.</li>
+<li>if <code>k &lt;= len</code>, repeat from step 1 on the left subarray.</li>
+<li>if <code>k &gt; len, k = k - len</code>, repeat from step 1 on the right subarray.</li>
+</ul>
+</li>
+</ol>
+</blockquote>
+<p><em>implementation</em></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#快速选择 找到第（k+1）小的数</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">quickselect</span>(<span class="params">nums, left, right, k</span>):</span></span><br><span class="line">    <span class="keyword">if</span> left &gt; right:</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    <span class="comment">#随机选取哨兵,可以一定程度上降低时间复杂度</span></span><br><span class="line">    random_index = random.randint(left, right)</span><br><span class="line">    nums[left], nums[random_index] = nums[random_index], nums[left]</span><br><span class="line">    pivot = nums[left]</span><br><span class="line">    <span class="comment"># 快速选择模板 为了找到哨兵pivot 在数组中的位置</span></span><br><span class="line">    i , j = left + <span class="number">1</span>, right</span><br><span class="line">    <span class="keyword">while</span> i &lt;= j:</span><br><span class="line">        <span class="keyword">while</span> i &lt;= j <span class="keyword">and</span> nums[i] &lt;= pivot: i += <span class="number">1</span></span><br><span class="line">        <span class="keyword">while</span> i &lt;= j <span class="keyword">and</span> nums[j] &gt; pivot: j -= <span class="number">1</span></span><br><span class="line">        <span class="keyword">if</span> i &lt;= j:</span><br><span class="line">            nums[i], nums[j] = nums[j], nums[i]</span><br><span class="line">            i += <span class="number">1</span></span><br><span class="line">            j -= <span class="number">1</span></span><br><span class="line">    nums[left], nums[j] = nums[j], nums[left]</span><br><span class="line">    <span class="comment"># j 为 pivot 在数组中的位置索引</span></span><br><span class="line">    <span class="keyword">if</span> j == k:</span><br><span class="line">        <span class="keyword">return</span> nums[j]</span><br><span class="line">    <span class="keyword">elif</span> j &lt; k:</span><br><span class="line">        <span class="keyword">return</span> quickselect(nums, j+<span class="number">1</span>, right, k)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> quickselect(nums, left, j<span class="number">-1</span>, k)</span><br></pre></td></tr></table></figure>
+
+<h3 id="Quick-Sort"><a href="#Quick-Sort" class="headerlink" title="Quick Sort"></a>Quick Sort</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">quicksort</span>(<span class="params">nums, left, right</span>):</span></span><br><span class="line">    <span class="keyword">if</span> left &gt; right:</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    pivot = nums[left]</span><br><span class="line">    i, j = left+<span class="number">1</span>, right</span><br><span class="line">    <span class="keyword">while</span> i &lt;= j:</span><br><span class="line">        <span class="keyword">while</span> i &lt;= j <span class="keyword">and</span> nums[i] &lt;= pivot: i += <span class="number">1</span></span><br><span class="line">        <span class="keyword">while</span> i &lt;= j <span class="keyword">and</span> nums[j] &gt;= pivot: j -= <span class="number">1</span></span><br><span class="line">        <span class="keyword">if</span> i &lt;= j:</span><br><span class="line">            nums[i], nums[j] = nums[j], nums[i]</span><br><span class="line">            i += <span class="number">1</span></span><br><span class="line">            j -= <span class="number">1</span></span><br><span class="line">    nums[left], nums[j] = nums[j], nums[left]</span><br><span class="line">    <span class="comment">#与快速选择的主要区别在于：快速排序需要再对两边同时递归，从而对整个数组进行排序。而快速选择只需要判断k的位置然后选择一边进行递归，类似于二分查找的操作，它只想找到第k个元素而不关系其他元素在数组中怎么排列，从而降低了时间复杂度</span></span><br><span class="line">    quicksort(nums, left, j<span class="number">-1</span>)</span><br><span class="line">    quicksort(nums, j+<span class="number">1</span>, right)</span><br></pre></td></tr></table></figure>
+
+<h3 id="Leetcode-examples"><a href="#Leetcode-examples" class="headerlink" title="Leetcode examples:"></a>Leetcode examples:</h3><ul>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/kth-largest-element-in-an-array/">Kth Largest Element in an Array</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/top-k-frequent-elements/">Top K Frequent Elements</a></li>
 </ul>
 
     </div>
@@ -397,13 +391,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2020/08/06/trie/" rel="prev" title="【leetcode】Implement Trie (Prefix Tree)">
-      <i class="fa fa-chevron-left"></i> 【leetcode】Implement Trie (Prefix Tree)
+    <a href="/2020/10/30/docker/" rel="prev" title="Docker Introduction">
+      <i class="fa fa-chevron-left"></i> Docker Introduction
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2020/08/07/%E5%BF%AB%E9%80%9F%E5%B9%82/" rel="next" title="【leetcode】快速幂">
-      【leetcode】快速幂 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -594,6 +585,57 @@
   
 
   
+      <script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      const script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3.0.5/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
 
   
 
