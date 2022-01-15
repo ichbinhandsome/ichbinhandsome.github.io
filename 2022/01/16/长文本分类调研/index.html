@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"ichbinhandsome.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="整理一下之前在腾讯实习时候的一些笔记，顺便再熟悉一下博客怎么上传文章，好久没有搞过，再加上换了新电脑，需要把这个博客源代码迁移一下。。。 长文本的处理在自然语言处理中一直是比较难的问题，在如今BERT火爆的情况下，几乎所有的文本分类任务都会使用BERT作为预训练模型，之后在下游任务中对其进行微调。由于BERT的输入必须是一个固定长度为512的token，所以在面对长文本时大部分都会选择截断的处理方">
+<meta property="og:type" content="article">
+<meta property="og:title" content="长文本分类调研">
+<meta property="og:url" content="https://ichbinhandsome.github.io/2022/01/16/%E9%95%BF%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB%E8%B0%83%E7%A0%94/index.html">
+<meta property="og:site_name" content="Ruixiang&#39;s blog">
+<meta property="og:description" content="整理一下之前在腾讯实习时候的一些笔记，顺便再熟悉一下博客怎么上传文章，好久没有搞过，再加上换了新电脑，需要把这个博客源代码迁移一下。。。 长文本的处理在自然语言处理中一直是比较难的问题，在如今BERT火爆的情况下，几乎所有的文本分类任务都会使用BERT作为预训练模型，之后在下游任务中对其进行微调。由于BERT的输入必须是一个固定长度为512的token，所以在面对长文本时大部分都会选择截断的处理方">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-01-16T03:06:07.000Z">
+<meta property="article:modified_time" content="2022-01-15T21:31:42.044Z">
+<meta property="article:author" content="Ruixiang wang">
+<meta property="article:tag" content="文本分类">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://ichbinhandsome.github.io/2022/01/16/%E9%95%BF%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB%E8%B0%83%E7%A0%94/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>长文本分类调研 | Ruixiang's blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Ruixiang's blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">work harder, study better, do faster, become stronger</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://ichbinhandsome.github.io/2022/01/16/%E9%95%BF%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB%E8%B0%83%E7%A0%94/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Ruixiang wang">
+      <meta itemprop="description" content="somthing interesting">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ruixiang's blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          长文本分类调研
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2022-01-16 04:06:07" itemprop="dateCreated datePublished" datetime="2022-01-16T04:06:07+01:00">2022-01-16</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2022-01-15 22:31:42" itemprop="dateModified" datetime="2022-01-15T22:31:42+01:00">2022-01-15</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/NLP/" itemprop="url" rel="index"><span itemprop="name">NLP</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p><em>整理一下之前在腾讯实习时候的一些笔记，顺便再熟悉一下博客怎么上传文章，好久没有搞过，再加上换了新电脑，需要把这个博客源代码迁移一下</em>。。。</p>
+<p>长文本的处理在自然语言处理中一直是比较难的问题，在如今BERT火爆的情况下，几乎所有的文本分类任务都会使用BERT作为预训练模型，之后在下游任务中对其进行微调。由于BERT的输入必须是一个固定长度为512的token，所以在面对长文本时大部分都会选择截断的处理方式：比如只截取开头或者截取开头和结尾。但是这样就会损失许多文本中的一些关键信息。本文调研了目前工业界和学术界中不采用简单截断对长文本分类相关问题的解决方案。</p>
+<a id="more"></a>
+
+<h3 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h3><p>知乎：<a target="_blank" rel="noopener" href="https://www.zhihu.com/question/327450789">https://www.zhihu.com/question/327450789</a></p>
+<ul>
+<li><p><a target="_blank" rel="noopener" href="https://arxiv.org/abs/1910.10781">HIERARCHICAL TRANSFORMERS FOR LONG DOCUMENT CLASSIFICATION</a></p>
+<p>Two extensions - RoBERT and ToBERT - to the BERT model, which enable its application in classification of long texts by performing segmentation and using another layer on top of the segment representations</p>
+<p>中文实验：<a target="_blank" rel="noopener" href="https://blog.csdn.net/valleria/article/details/105311340">https://blog.csdn.net/valleria/article/details/105311340</a></p>
+</li>
+</ul>
+<ul>
+<li><p><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1905.05583.pdf">How to Fine-Tune BERT for Text Classification?</a> 这篇论文给了几种对长文本的处理方式：</p>
+<p><strong>Truncation methods</strong>, the key information of an article is at the beginning and end. We use three different methods of truncate text to perform<br>BERT fine-tuning.</p>
+<ol>
+<li>head-only: keep the first 510 tokens6;</li>
+</ol>
+</li>
+</ul>
+<ol start="2">
+<li><p>tail-only: keep the last 510 tokens;</p>
+<ol start="3">
+<li>head+tail: empirically select the first 128<br>and the last 382 tokens.</li>
+</ol>
+<p><strong>Hierarchical methods</strong>， The input text is firstly divided into k = L=510 fractions, which is fed into BERT to obtain the representation of the k text fractions. The representation of each fraction is the hidden state of the [CLS] tokens of the last layer. Then we use mean pooling, max pooling and self-attention to combine the representations of all the fractions.</p>
+</li>
+</ol>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1908.08167.pdf">Multi-passage BERT: A Globally Normalized BERT Model for Open-domain Question Answering</a></li>
+</ul>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1901.02860.pdf">Transformer-XL: Attentive Language Models Beyond a Fixed-Length Context</a></li>
+</ul>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2008.09093.pdf">PARADE: Passage Representation Aggregation for Document Reranking</a></li>
+</ul>
+<ul>
+<li><p><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1810.04805.pdf">BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding</a></p>
+<p>这个问题现在的解决方法是用Sliding Window（划窗），主要见于诸阅读理解任务（如Stanford的SQuAD)。Sliding Window即把文档分成<strong>有重叠</strong>的若干段，然后每一段都当作独立的文档送入BERT进行处理。最后再对于这些独立文档得到的结果进行整合。<br>Sliding Window可以只用在Training中。因为Test之时不需要Back Propagation，亦不需要large batch_size，因而总有手段将长文本塞进显存中（如<code>torch.nograd, batch_size=1</code>）.至于具体实现可以参考原始BERT的<code>run_squad.py</code> :</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/google-research/bert/blob/master/run_squad.py">https://github.com/google-research/bert/blob/master/run_squad.py</a></p>
+</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB/" rel="tag"># 文本分类</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/01/15/test-md/" rel="prev" title="test.md">
+      <i class="fa fa-chevron-left"></i> test.md
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="nav-number">1.</span> <span class="nav-text">解决方案</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Ruixiang wang</p>
+  <div class="site-description" itemprop="description">somthing interesting</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">15</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ruixiang wang</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
