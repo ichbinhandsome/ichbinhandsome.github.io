@@ -30,7 +30,7 @@
 <meta property="og:image" content="https://raw.githubusercontent.com/ichbinhandsome/images/main/202401220102255.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/ichbinhandsome/images/main/202401210053691.png">
 <meta property="article:published_time" content="2024-01-07T19:48:06.000Z">
-<meta property="article:modified_time" content="2024-01-22T00:24:02.151Z">
+<meta property="article:modified_time" content="2024-01-22T00:26:59.809Z">
 <meta property="article:author" content="Ruixiang Wang">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://raw.githubusercontent.com/ichbinhandsome/images/main/202401220102255.png">
@@ -199,7 +199,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2024-01-22 01:24:02" itemprop="dateModified" datetime="2024-01-22T01:24:02+01:00">2024-01-22</time>
+                <time title="Modified: 2024-01-22 01:26:59" itemprop="dateModified" datetime="2024-01-22T01:26:59+01:00">2024-01-22</time>
               </span>
 
           
@@ -222,6 +222,7 @@
       
         <p>This image shows the basic structure of MoE. (<em><a target="_blank" rel="noopener" href="https://github.com/mistralai/mistral-src">source</a></em>)<br><img src="https://raw.githubusercontent.com/ichbinhandsome/images/main/202401220102255.png" alt="moe"></p>
 <a id="more"></a>
+
 <p>Recently Mixtral 8x7B MoE model dominate the open source models, as it shows on-par/better performance compared to open sources LLMs with more parameters.<br>The MoE models have following features:</p>
 <ul>
 <li>Achieve the same quality as its dense models and much faster during pretraining</li>
@@ -238,7 +239,7 @@
 <h3 id="Mixtral-8x7B-MoE"><a href="#Mixtral-8x7B-MoE" class="headerlink" title="Mixtral 8x7B MoE"></a>Mixtral 8x7B MoE</h3><p>In Mixtral 8x7B MoE every FFN layer of the transformer model is replaced by an MoE layer, which is composed of a gate network and 8 experts. The gate network is a learned gating network decides which experts to send a part of the input. During training and inference, only 2 experts will be selected per token by the learned gating network.</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> torch <span class="keyword">import</span> nn</span><br><span class="line"><span class="keyword">from</span> dataclasses <span class="keyword">import</span> dataclass</span><br><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">from</span> typing <span class="keyword">import</span> List, Optional, Tuple</span><br><span class="line"></span><br><span class="line"><span class="meta">@dataclass</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MoeArgs</span>(<span class="params">Serializable</span>):</span></span><br><span class="line">    num_experts: int</span><br><span class="line">    num_experts_per_tok: int</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MoeLayer</span>(<span class="params">nn.Module</span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, experts: List[nn.Module], gate: nn.Module, moe_args: MoeArgs</span>):</span></span><br><span class="line">        super().__init__()</span><br><span class="line">        <span class="keyword">assert</span> len(experts) &gt; <span class="number">0</span></span><br><span class="line">        self.experts = nn.ModuleList(experts) <span class="comment"># a list contains num_experts FFNs  </span></span><br><span class="line">        self.gate = gate <span class="comment"># a linear layer: nn.Linear(dim, num_experts, bias=False)</span></span><br><span class="line">        self.args = moe_args</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">forward</span>(<span class="params">self, inputs: torch.Tensor</span>):</span></span><br><span class="line">        gate_logits = self.gate(inputs)</span><br><span class="line">        weights, selected_experts = torch.topk(gate_logits, self.args.num_experts_per_tok)</span><br><span class="line">        weights = F.softmax(weights, dim=<span class="number">1</span>, dtype=torch.float).to(inputs.dtype)</span><br><span class="line">        results = torch.zeros_like(inputs)</span><br><span class="line">        <span class="keyword">for</span> i, expert <span class="keyword">in</span> enumerate(self.experts):</span><br><span class="line">            batch_idx, nth_expert = torch.where(selected_experts == i)</span><br><span class="line">            results[batch_idx] += weights[batch_idx, nth_expert, <span class="literal">None</span>] * expert(</span><br><span class="line">                inputs[batch_idx]</span><br><span class="line">            )</span><br><span class="line">        <span class="keyword">return</span> results</span><br></pre></td></tr></table></figure>
 <p>Different model architectures between Llama model and Mixtral 8x7b MoE model (<em><a target="_blank" rel="noopener" href="https://github.com/open-compass/MixtralKit/tree/main">source</a></em>)<br><img src="https://raw.githubusercontent.com/ichbinhandsome/images/main/202401210053691.png" alt="Mixtral"></p>
-<h2 id="Resources"><a href="#Resources" class="headerlink" title="Resources"></a>Resources</h2><ul>
+<h3 id="Resources"><a href="#Resources" class="headerlink" title="Resources"></a>Resources</h3><ul>
 <li><a target="_blank" rel="noopener" href="https://huggingface.co/blog/moe">https://huggingface.co/blog/moe</a></li>
 <li><a target="_blank" rel="noopener" href="https://github.com/open-compass/MixtralKit/tree/main">https://github.com/open-compass/MixtralKit/tree/main</a></li>
 <li><a target="_blank" rel="noopener" href="https://github.com/dzhulgakov/llama-mistral">https://github.com/dzhulgakov/llama-mistral</a></li>
@@ -351,7 +352,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Simple-Pytorch-Implementation-of-MoE"><span class="nav-number">1.</span> <span class="nav-text">Simple Pytorch Implementation of MoE</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Mixtral-8x7B-MoE"><span class="nav-number">2.</span> <span class="nav-text">Mixtral 8x7B MoE</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Resources"><span class="nav-number"></span> <span class="nav-text">Resources</span></a></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Simple-Pytorch-Implementation-of-MoE"><span class="nav-number">1.</span> <span class="nav-text">Simple Pytorch Implementation of MoE</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Mixtral-8x7B-MoE"><span class="nav-number">2.</span> <span class="nav-text">Mixtral 8x7B MoE</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Resources"><span class="nav-number">3.</span> <span class="nav-text">Resources</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
