@@ -29,7 +29,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://raw.githubusercontent.com/ichbinhandsome/images/main/202311261826560.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/ichbinhandsome/images/main/202312262122337.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/ichbinhandsome/images/main/202402032142824.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/ichbinhandsome/images/main/202402040022768.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/ichbinhandsome/images/main/202402032219856.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/ichbinhandsome/images/main/202402032221986.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/ichbinhandsome/images/main/202402032240302.png">
@@ -38,7 +38,7 @@
 <meta property="og:image" content="https://raw.githubusercontent.com/ichbinhandsome/images/main/202402040009042.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/ichbinhandsome/images/main/202402040009890.png">
 <meta property="article:published_time" content="2023-11-22T21:44:18.000Z">
-<meta property="article:modified_time" content="2024-02-03T23:18:55.348Z">
+<meta property="article:modified_time" content="2024-02-03T23:23:13.118Z">
 <meta property="article:author" content="Ruixiang Wang">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://raw.githubusercontent.com/ichbinhandsome/images/main/202311261826560.png">
@@ -207,7 +207,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2024-02-04 00:18:55" itemprop="dateModified" datetime="2024-02-04T00:18:55+01:00">2024-02-04</time>
+                <time title="Modified: 2024-02-04 00:23:13" itemprop="dateModified" datetime="2024-02-04T00:23:13+01:00">2024-02-04</time>
               </span>
 
           
@@ -234,7 +234,7 @@
 <h3 id="RMSNorm-implementation"><a href="#RMSNorm-implementation" class="headerlink" title="RMSNorm implementation"></a>RMSNorm implementation</h3><p><img src="https://raw.githubusercontent.com/ichbinhandsome/images/main/202312262122337.png" alt="RMSNorm"></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> typing <span class="keyword">import</span> Optional</span><br><span class="line"><span class="keyword">import</span> math</span><br><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">import</span> torch.nn <span class="keyword">as</span> nn</span><br><span class="line"><span class="keyword">import</span> torch.nn.functional <span class="keyword">as</span> F</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">RMSNorm</span>(<span class="params">nn.Module</span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, dim: int, eps: float = <span class="number">1e-6</span></span>):</span></span><br><span class="line">        super().__init__()</span><br><span class="line">        self.eps = eps</span><br><span class="line">        <span class="comment"># The gamma parameter</span></span><br><span class="line">        self.weight = nn.Parameter(torch.ones(dim))</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">_norm</span>(<span class="params">self, x: torch.Tensor</span>):</span></span><br><span class="line">        <span class="comment"># (B, Seq_Len, Dim) * (B, Seq_Len, 1) = (B, Seq_Len, Dim)</span></span><br><span class="line">        <span class="comment"># rsqrt: 1 / sqrt(x)</span></span><br><span class="line">        <span class="keyword">return</span> x * torch.rsqrt(x.pow(<span class="number">2</span>).mean(<span class="number">-1</span>, keepdim=<span class="literal">True</span>) + self.eps)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">forward</span>(<span class="params">self, x: torch.Tensor</span>):</span></span><br><span class="line">        <span class="comment"># (Dim) * (B, Seq_Len, Dim) = (B, Seq_Len, Dim)</span></span><br><span class="line">        <span class="keyword">return</span> self.weight * self._norm(x.float()).type_as(x)</span><br></pre></td></tr></table></figure>
 
-<h3 id="Rotary-Position-Embedding"><a href="#Rotary-Position-Embedding" class="headerlink" title="Rotary Position Embedding"></a>Rotary Position Embedding</h3><p><img src="https://raw.githubusercontent.com/ichbinhandsome/images/main/202402032142824.png" alt="rotary"><br><img src="https://raw.githubusercontent.com/ichbinhandsome/images/main/202402032219856.png" alt="rotary_matrix"><br>Background Knowledge:</p>
+<h3 id="Rotary-Position-Embedding"><a href="#Rotary-Position-Embedding" class="headerlink" title="Rotary Position Embedding"></a>Rotary Position Embedding</h3><p><img src="https://raw.githubusercontent.com/ichbinhandsome/images/main/202402040022768.png" alt="rotary"><br><img src="https://raw.githubusercontent.com/ichbinhandsome/images/main/202402032219856.png" alt="rotary_matrix"><br>Background Knowledge:</p>
 <ul>
 <li>Can we find an inner product over the two vectors q (query) and k (key) used in the attention mechanism that only depends on the two vectors and the relative distance of the token they represent?</li>
 <li>The “intensity” of relationship between two tokens encoded with Rotary Positional Embeddings will be numerically smaller as the distance between them grows.</li>
