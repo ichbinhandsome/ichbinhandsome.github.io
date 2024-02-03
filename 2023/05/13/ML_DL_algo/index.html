@@ -48,7 +48,7 @@
 <meta property="og:image" content="https://raw.githubusercontent.com/ichbinhandsome/images/main/202402031620531.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/ichbinhandsome/images/main/202401312314722.png">
 <meta property="article:published_time" content="2023-05-13T16:53:38.000Z">
-<meta property="article:modified_time" content="2024-02-03T23:36:50.981Z">
+<meta property="article:modified_time" content="2024-02-03T23:46:29.501Z">
 <meta property="article:author" content="Ruixiang Wang">
 <meta property="article:tag" content="Machine Learning">
 <meta name="twitter:card" content="summary">
@@ -218,7 +218,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2024-02-04 00:36:50" itemprop="dateModified" datetime="2024-02-04T00:36:50+01:00">2024-02-04</time>
+                <time title="Modified: 2024-02-04 00:46:29" itemprop="dateModified" datetime="2024-02-04T00:46:29+01:00">2024-02-04</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -283,7 +283,7 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">tahn</span>(<span class="params">x</span>):</span></span><br><span class="line">    <span class="keyword">return</span> (np.exp(x)-np.exp(-x)) / (np.exp(x) + np.exp(-x))</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>Softmax (from 0 to 1)</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">softmax</span>(<span class="params">x</span>):</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;Compute softmax values for each sets of scores in x.&quot;&quot;&quot;</span></span><br><span class="line">    e_x = np.exp(x - np.max(x))</span><br><span class="line">    <span class="keyword">return</span> e_x / e_x.sum(axis=<span class="number">0</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">softmax</span>(<span class="params">x</span>):</span></span><br><span class="line">    <span class="comment"># assumes x is a vector</span></span><br><span class="line">    x = x - np.max(x) <span class="comment"># to avoid overflow</span></span><br><span class="line">    <span class="keyword">return</span> np.exp(x) / np.sum(np.exp(x))</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>GLU (Gated Linear Units) activation function<br><img src="https://raw.githubusercontent.com/ichbinhandsome/images/main/202401022009002.png" alt="glu"></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch.nn <span class="keyword">as</span> nn</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">GLU</span>(<span class="params">nn.Module</span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, in_size</span>):</span></span><br><span class="line">        super().__init__()</span><br><span class="line">        self.linear1 = nn.Linear(in_size, in_size)</span><br><span class="line">        self.linear2 = nn.Linear(in_size, in_size)</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">forward</span>(<span class="params">self, x</span>):</span></span><br><span class="line">        <span class="keyword">return</span> self.linear1(x) * self.linear2(x).sigmoid()</span><br></pre></td></tr></table></figure></li>
