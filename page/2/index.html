@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 5.0.0">
+<meta name="generator" content="Hexo 5.4.2">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
@@ -225,7 +225,7 @@
 
       
           <h3 id="什么是快慢指针？"><a href="#什么是快慢指针？" class="headerlink" title="什么是快慢指针？"></a>什么是快慢指针？</h3><p>快慢指针是遍历操作时的一种技巧，通常是由一个快指针和一个慢指针组成，一般应用在链表操作上。以下示例是快指针走两步，慢指针走一步：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">fast, slow = head <span class="comment"># head是链表的头节点（单链表且无环）</span></span><br><span class="line"><span class="keyword">while</span> fast <span class="keyword">and</span> fast.next:</span><br><span class="line">    fast = fast.next.next</span><br><span class="line">    slow = slow.next</span><br><span class="line"><span class="comment">#循环终止时slow指针指向链表的中间节点</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">fast, slow = head <span class="comment"># head是链表的头节点（单链表且无环）</span></span><br><span class="line"><span class="keyword">while</span> fast <span class="keyword">and</span> fast.<span class="built_in">next</span>:</span><br><span class="line">    fast = fast.<span class="built_in">next</span>.<span class="built_in">next</span></span><br><span class="line">    slow = slow.<span class="built_in">next</span></span><br><span class="line"><span class="comment">#循环终止时slow指针指向链表的中间节点</span></span><br></pre></td></tr></table></figure>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2020/11/06/FastAndSlow/#more" rel="contents">
@@ -674,7 +674,7 @@
 
       
           <h3 id="Problem"><a href="#Problem" class="headerlink" title="Problem:"></a>Problem:</h3><p>You are given a <strong>perfect binary tree</strong> where all leaves are on the same level, and every parent has two children. The binary tree has the following definition:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">struct Node &#123;</span><br><span class="line">  int val;</span><br><span class="line">  Node *left;</span><br><span class="line">  Node *right;</span><br><span class="line">  Node *next;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">struct Node &#123;</span><br><span class="line">  int val;</span><br><span class="line">  Node *left;</span><br><span class="line">  Node *right;</span><br><span class="line">  Node *next;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>Populate each next pointer to point to its next right node. If there is no next right node, the next pointer should be set to <code>NULL</code>.</p>
 <p>Initially, all next pointers are set to <code>NULL</code>.</p>
@@ -955,7 +955,7 @@
       
           <h3 id="Problem"><a href="#Problem" class="headerlink" title="Problem:"></a>Problem:</h3><p>Implement a trie with <code>insert</code>, <code>search</code>, and <code>startsWith</code> methods.</p>
 <p><em>Example:</em></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Trie trie = <span class="keyword">new</span> Trie();</span><br><span class="line"></span><br><span class="line">trie.insert(<span class="string">&quot;apple&quot;</span>);</span><br><span class="line">trie.search(<span class="string">&quot;apple&quot;</span>);   <span class="comment">// returns true</span></span><br><span class="line">trie.search(<span class="string">&quot;app&quot;</span>);     <span class="comment">// returns false</span></span><br><span class="line">trie.startsWith(<span class="string">&quot;app&quot;</span>); <span class="comment">// returns true</span></span><br><span class="line">trie.insert(<span class="string">&quot;app&quot;</span>);   </span><br><span class="line">trie.search(<span class="string">&quot;app&quot;</span>);     <span class="comment">// returns true</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Trie</span> <span class="variable">trie</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Trie</span>();</span><br><span class="line"></span><br><span class="line">trie.insert(<span class="string">&quot;apple&quot;</span>);</span><br><span class="line">trie.search(<span class="string">&quot;apple&quot;</span>);   <span class="comment">// returns true</span></span><br><span class="line">trie.search(<span class="string">&quot;app&quot;</span>);     <span class="comment">// returns false</span></span><br><span class="line">trie.startsWith(<span class="string">&quot;app&quot;</span>); <span class="comment">// returns true</span></span><br><span class="line">trie.insert(<span class="string">&quot;app&quot;</span>);   </span><br><span class="line">trie.search(<span class="string">&quot;app&quot;</span>);     <span class="comment">// returns true</span></span><br></pre></td></tr></table></figure>
 
 <h3 id="Methods-amp-Solutions"><a href="#Methods-amp-Solutions" class="headerlink" title="Methods &amp; Solutions:"></a>Methods &amp; Solutions:</h3>
           <!--noindex-->

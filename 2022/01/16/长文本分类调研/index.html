@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 5.0.0">
+<meta name="generator" content="Hexo 5.4.2">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
@@ -229,9 +229,9 @@
       
         <p><em>整理一下之前在腾讯实习时候的一些笔记，顺便再熟悉一下博客怎么上传文章，好久没有搞过，再加上换了新电脑，需要把这个博客源代码迁移一下</em>。。。</p>
 <p>长文本的处理在自然语言处理中一直是比较难的问题，在如今BERT火爆的情况下，几乎所有的文本分类任务都会使用BERT作为预训练模型，之后在下游任务中对其进行微调。由于BERT的输入必须是一个固定长度为512的token，所以在面对长文本时大部分都会选择截断的处理方式：比如只截取开头或者截取开头和结尾。但是这样就会损失许多文本中的一些关键信息。本文调研了目前工业界和学术界中不采用简单截断对长文本分类相关问题的解决方案。</p>
-<a id="more"></a>
+<span id="more"></span>
 
-<h3 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h3><p>知乎：<a target="_blank" rel="noopener" href="https://www.zhihu.com/question/327450789">https://www.zhihu.com/question/327450789</a></p>
+<h3><span id="解决方案">解决方案</span></h3><p>知乎：<a target="_blank" rel="noopener" href="https://www.zhihu.com/question/327450789">https://www.zhihu.com/question/327450789</a></p>
 <ul>
 <li><p><a target="_blank" rel="noopener" href="https://arxiv.org/abs/1910.10781">HIERARCHICAL TRANSFORMERS FOR LONG DOCUMENT CLASSIFICATION</a></p>
 <p>Two extensions - RoBERT and ToBERT - to the BERT model, which enable its application in classification of long texts by performing segmentation and using another layer on top of the segment representations</p>
@@ -247,23 +247,17 @@
 </li>
 </ul>
 <ol start="2">
-<li><p>tail-only: keep the last 510 tokens;</p>
-<ol start="3">
+<li>tail-only: keep the last 510 tokens;</li>
 <li>head+tail: empirically select the first 128<br>and the last 382 tokens.</li>
 </ol>
-<p><strong>Hierarchical methods</strong>， The input text is firstly divided into k = L=510 fractions, which is fed into BERT to obtain the representation of the k text fractions. The representation of each fraction is the hidden state of the [CLS] tokens of the last layer. Then we use mean pooling, max pooling and self-attention to combine the representations of all the fractions.</p>
+<p>  <strong>Hierarchical methods</strong>， The input text is firstly divided into k = L=510 fractions, which is fed into BERT to obtain the representation of the k text fractions. The representation of each fraction is the hidden state of the [CLS] tokens of the last layer. Then we use mean pooling, max pooling and self-attention to combine the representations of all the fractions.</p>
+<ul>
+<li><p><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1908.08167.pdf">Multi-passage BERT: A Globally Normalized BERT Model for Open-domain Question Answering</a></p>
 </li>
-</ol>
-<ul>
-<li><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1908.08167.pdf">Multi-passage BERT: A Globally Normalized BERT Model for Open-domain Question Answering</a></li>
-</ul>
-<ul>
-<li><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1901.02860.pdf">Transformer-XL: Attentive Language Models Beyond a Fixed-Length Context</a></li>
-</ul>
-<ul>
-<li><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2008.09093.pdf">PARADE: Passage Representation Aggregation for Document Reranking</a></li>
-</ul>
-<ul>
+<li><p><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1901.02860.pdf">Transformer-XL: Attentive Language Models Beyond a Fixed-Length Context</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2008.09093.pdf">PARADE: Passage Representation Aggregation for Document Reranking</a></p>
+</li>
 <li><p><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1810.04805.pdf">BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding</a></p>
 <p>这个问题现在的解决方法是用Sliding Window（划窗），主要见于诸阅读理解任务（如Stanford的SQuAD)。Sliding Window即把文档分成<strong>有重叠</strong>的若干段，然后每一段都当作独立的文档送入BERT进行处理。最后再对于这些独立文档得到的结果进行整合。<br>Sliding Window可以只用在Training中。因为Test之时不需要Back Propagation，亦不需要large batch_size，因而总有手段将长文本塞进显存中（如<code>torch.nograd, batch_size=1</code>）.至于具体实现可以参考原始BERT的<code>run_squad.py</code> :</p>
 <p><a target="_blank" rel="noopener" href="https://github.com/google-research/bert/blob/master/run_squad.py">https://github.com/google-research/bert/blob/master/run_squad.py</a></p>
@@ -381,7 +375,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="nav-number">1.</span> <span class="nav-text">解决方案</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">解决方案</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 

@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 5.0.0">
+<meta name="generator" content="Hexo 5.4.2">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
@@ -227,20 +227,20 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h4 id="问题："><a href="#问题：" class="headerlink" title="问题："></a>问题：</h4><p>使用 <code>hexo + next-theme + Github Page</code>搭建博客在收尾阶段碰到一点小问题，菜单栏的<code>Tags</code>和 <code>Categories</code> 链接无法正常显示，而是直接跳转到404页面。</p>
-<h4 id="解决方法："><a href="#解决方法：" class="headerlink" title="解决方法："></a>解决方法：</h4><a id="more"></a>
+        <h4><span id="问题">问题：</span></h4><p>使用 <code>hexo + next-theme + Github Page</code>搭建博客在收尾阶段碰到一点小问题，菜单栏的<code>Tags</code>和 <code>Categories</code> 链接无法正常显示，而是直接跳转到404页面。</p>
+<h4><span id="解决方法">解决方法：</span></h4><span id="more"></span>
 
 <ul>
 <li><p>hexo 默认 <code>source</code> 文件中是没有 <code>tags</code> 和 <code>categories</code> 对应的page文件的，我们需要先手动进行创建，使用命令行:</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo new page categories</span><br><span class="line">hexo new page tags</span><br></pre></td></tr></table></figure></li>
 <li><p>接下来设置在<code>source</code> 目录下的<code>tags\index.md</code> 和 <code>categories\index.md</code> 文件。 在文件最上方的 <code>front-matter</code>（顶部代码片段）中加上对应的<code>type</code> 类型。 比如对于<code>tags\index.md</code> 加上<code> type: tags</code>,  对于<code>categories\index.md</code>加上 <code>type: categories</code>。</p>
-<br/>
+<br>
 </li>
 <li><p>测试： 使用 <code>hexo new xxx</code> 新建一个博客文章，在文件最上方的 <code>front-matter</code>（顶部代码片段）中加上对应的<code>tags</code> 和 <code>categories</code>, 比如：</p>
-  <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">tags: hello world</span><br><span class="line">categories: hello world</span><br></pre></td></tr></table></figure>
-<br/>
+  <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">tags</span>: hello world</span><br><span class="line"><span class="attr">categories</span>: hello world</span><br></pre></td></tr></table></figure>
+<br>
 </li>
-<li><p>使用 <code>hexo g</code>重新生成静态文件，再重新部署 <code> hexo d</code>，打开博客，可以看到菜单中 <code>Tags</code> 和 <code>Categories</code> 成功生成。 </p>
+<li><p>使用 <code>hexo g</code>重新生成静态文件，再重新部署 <code> hexo d</code>，打开博客，可以看到菜单中 <code>Tags</code> 和 <code>Categories</code> 成功生成。</p>
 </li>
 </ul>
 
@@ -352,7 +352,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%97%AE%E9%A2%98%EF%BC%9A"><span class="nav-number">1.</span> <span class="nav-text">问题：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95%EF%BC%9A"><span class="nav-number">2.</span> <span class="nav-text">解决方法：</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">问题：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link"><span class="nav-number">2.</span> <span class="nav-text">解决方法：</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
