@@ -611,7 +611,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2024-02-04 01:18:29" itemprop="dateModified" datetime="2024-02-04T01:18:29+01:00">2024-02-04</time>
+                <time title="Modified: 2024-02-04 01:27:08" itemprop="dateModified" datetime="2024-02-04T01:27:08+01:00">2024-02-04</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -642,14 +642,50 @@
 
       
           <p>This blog aims to implement some important Machine Learning, Deep Learning, Natural Language Processing, Large Language Models related algorithms from scratch, which can help people get deeper understanding about how these algorithms work in real code. </p>
-<p>[TOC]</p>
-<h2 id="Classic-Machine-Learning-algorithms"><a href="#Classic-Machine-Learning-algorithms" class="headerlink" title="Classic Machine Learning algorithms"></a>Classic Machine Learning algorithms</h2><h3 id="K-means"><a href="#K-means" class="headerlink" title="K-means"></a>K-means</h3><ul>
-<li>Steps:<ol>
-<li>Clusters the data into <em>k</em> groups where <em>k</em> is predefined.</li>
-<li>Select <em>k</em> points at <em>random</em> as cluster centers.</li>
-<li>Assign objects to their closest cluster center according to the <em>Euclidean distance</em> function.</li>
-<li>Calculate the <em>centroid</em> or <em>mean</em> of all objects in each cluster.</li>
-<li>Repeat steps 2, 3 and 4 until the same points are assigned to each cluster in consecutive rounds.
+<ul>
+<li><a href="#classic-machine-learning-algorithms">Classic Machine Learning algorithms</a><ul>
+<li><a href="#k-means">K-means</a></li>
+<li><a href="#logistic-regression">Logistic regression</a></li>
+<li><a href="#linear-regression">Linear Regression</a></li>
+<li><a href="#activation-functions">Activation Functions</a></li>
+<li><a href="#loss-functions">Loss Functions</a></li>
+<li><a href="#evaluation-metrics">Evaluation metrics</a><ul>
+<li><a href="#recall-precision-f1-accuracy">Recall, Precision, F1, accuracy</a></li>
+<li><a href="#marco--micro-average-recallprecision">Marco &amp; Micro average recall/precision</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#deep-learning-algorithms">Deep Learning algorithms</a><ul>
+<li><a href="#batch-normalization">Batch Normalization</a></li>
+<li><a href="#layer-normalization">Layer Normalization</a></li>
+<li><a href="#dropout">Dropout</a></li>
+<li><a href="#optimizers">Optimizers</a><ul>
+<li><a href="#sgd-stochastic-gradient-descent">SGD (Stochastic Gradient Descent)</a></li>
+<li><a href="#mini-batch-gradient-descent-bgd">Mini-Batch Gradient Descent (BGD)</a></li>
+<li><a href="#momentum">Momentum</a></li>
+<li><a href="#adagrad-adaptative-gradient">Adagrad (Adaptative Gradient)</a></li>
+<li><a href="#adadelta">Adadelta</a></li>
+<li><a href="#rmsprop-root-mean-square-propagation">RMSProp (Root Mean Square Propagation)</a></li>
+<li><a href="#adam-adaptive-moment-estimation">Adam (Adaptive Moment Estimation)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#nlp-algorithms">NLP algorithms</a><ul>
+<li><a href="#fasttext">FastText</a></li>
+</ul>
+</li>
+<li><a href="#llm-algorithms">LLM algorithms</a><ul>
+<li><a href="#lora-low-rank-adaption-implementation">LoRA (Low Rank Adaption) Implementation</a></li>
+<li><a href="#speculative-decoding">Speculative Decoding</a></li>
+</ul>
+</li>
+<li><a href="#mathematics">Mathematics</a><ul>
+<li><a href="#different-distributions">Different distributions</a></li>
+</ul>
+</li>
+<li><a href="#references">References</a>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2023/05/13/ML_DL_algo/#more" rel="contents">

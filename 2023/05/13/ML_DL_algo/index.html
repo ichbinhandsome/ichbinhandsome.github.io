@@ -48,7 +48,7 @@
 <meta property="og:image" content="https://raw.githubusercontent.com/ichbinhandsome/images/main/202402031620531.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/ichbinhandsome/images/main/202401312314722.png">
 <meta property="article:published_time" content="2023-05-13T16:53:38.000Z">
-<meta property="article:modified_time" content="2024-02-04T00:18:29.953Z">
+<meta property="article:modified_time" content="2024-02-04T00:27:08.941Z">
 <meta property="article:author" content="Ruixiang Wang">
 <meta property="article:tag" content="Machine Learning">
 <meta name="twitter:card" content="summary">
@@ -218,7 +218,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2024-02-04 01:18:29" itemprop="dateModified" datetime="2024-02-04T01:18:29+01:00">2024-02-04</time>
+                <time title="Modified: 2024-02-04 01:27:08" itemprop="dateModified" datetime="2024-02-04T01:27:08+01:00">2024-02-04</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -249,17 +249,65 @@
 
       
         <p>This blog aims to implement some important Machine Learning, Deep Learning, Natural Language Processing, Large Language Models related algorithms from scratch, which can help people get deeper understanding about how these algorithms work in real code. </p>
-<p>[TOC]</p>
+<ul>
+<li><a href="#classic-machine-learning-algorithms">Classic Machine Learning algorithms</a><ul>
+<li><a href="#k-means">K-means</a></li>
+<li><a href="#logistic-regression">Logistic regression</a></li>
+<li><a href="#linear-regression">Linear Regression</a></li>
+<li><a href="#activation-functions">Activation Functions</a></li>
+<li><a href="#loss-functions">Loss Functions</a></li>
+<li><a href="#evaluation-metrics">Evaluation metrics</a><ul>
+<li><a href="#recall-precision-f1-accuracy">Recall, Precision, F1, accuracy</a></li>
+<li><a href="#marco--micro-average-recallprecision">Marco &amp; Micro average recall/precision</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#deep-learning-algorithms">Deep Learning algorithms</a><ul>
+<li><a href="#batch-normalization">Batch Normalization</a></li>
+<li><a href="#layer-normalization">Layer Normalization</a></li>
+<li><a href="#dropout">Dropout</a></li>
+<li><a href="#optimizers">Optimizers</a><ul>
+<li><a href="#sgd-stochastic-gradient-descent">SGD (Stochastic Gradient Descent)</a></li>
+<li><a href="#mini-batch-gradient-descent-bgd">Mini-Batch Gradient Descent (BGD)</a></li>
+<li><a href="#momentum">Momentum</a></li>
+<li><a href="#adagrad-adaptative-gradient">Adagrad (Adaptative Gradient)</a></li>
+<li><a href="#adadelta">Adadelta</a></li>
+<li><a href="#rmsprop-root-mean-square-propagation">RMSProp (Root Mean Square Propagation)</a></li>
+<li><a href="#adam-adaptive-moment-estimation">Adam (Adaptive Moment Estimation)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#nlp-algorithms">NLP algorithms</a><ul>
+<li><a href="#fasttext">FastText</a></li>
+</ul>
+</li>
+<li><a href="#llm-algorithms">LLM algorithms</a><ul>
+<li><a href="#lora-low-rank-adaption-implementation">LoRA (Low Rank Adaption) Implementation</a></li>
+<li><a href="#speculative-decoding">Speculative Decoding</a></li>
+</ul>
+</li>
+<li><a href="#mathematics">Mathematics</a><ul>
+<li><a href="#different-distributions">Different distributions</a></li>
+</ul>
+</li>
+<li><a href="#references">References</a><a id="more"></a>
+
+</li>
+</ul>
 <h2 id="Classic-Machine-Learning-algorithms"><a href="#Classic-Machine-Learning-algorithms" class="headerlink" title="Classic Machine Learning algorithms"></a>Classic Machine Learning algorithms</h2><h3 id="K-means"><a href="#K-means" class="headerlink" title="K-means"></a>K-means</h3><ul>
-<li>Steps:<ol>
+<li><p>Steps:</p>
+<ol>
 <li>Clusters the data into <em>k</em> groups where <em>k</em> is predefined.</li>
 <li>Select <em>k</em> points at <em>random</em> as cluster centers.</li>
 <li>Assign objects to their closest cluster center according to the <em>Euclidean distance</em> function.</li>
 <li>Calculate the <em>centroid</em> or <em>mean</em> of all objects in each cluster.</li>
-<li>Repeat steps 2, 3 and 4 until the same points are assigned to each cluster in consecutive rounds. <a id="more"></a></li>
+<li>Repeat steps 2, 3 and 4 until the same points are assigned to each cluster in consecutive rounds. </li>
 </ol>
 </li>
-<li>Implementation:<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">cal_dist</span>(<span class="params">vector1, vector2</span>):</span></span><br><span class="line">    <span class="comment"># euclidian distance </span></span><br><span class="line">    eucl_dist = np.sqrt(np.sum((vector1 - vector2)**<span class="number">2</span>))</span><br><span class="line">    <span class="keyword">return</span> eucl_dist</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">k_means</span>(<span class="params">data, k</span>):</span></span><br><span class="line">    n_samples, n_shape = data.shape</span><br><span class="line">    <span class="comment"># random initialize centroids </span></span><br><span class="line">    centroid_index = np.random.choice(range(n_samples), k)</span><br><span class="line">    centroid_coords = data[centroid_index]</span><br><span class="line">    <span class="comment"># label of each data point</span></span><br><span class="line">    labels = [<span class="number">-1</span>] * n_samples</span><br><span class="line">    <span class="comment"># iterate until centroid no longer change</span></span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(n_samples):</span><br><span class="line">            min_dist = float(<span class="string">&quot;inf&quot;</span>)</span><br><span class="line">            min_cluster_idx = <span class="number">-1</span></span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> range(k):</span><br><span class="line">                dist = cal_dist(data[i], centroid_coords[j])</span><br><span class="line">                <span class="keyword">if</span> dist &lt; min_dist:</span><br><span class="line">                    min_dist = dist</span><br><span class="line">                    min_cluster_idx = k</span><br><span class="line">            <span class="comment"># update cluster index for each point</span></span><br><span class="line">            label[i] = min_cluster_idx</span><br><span class="line">        <span class="comment"># flag indicate if the centroid change of not: stop condition for while loop</span></span><br><span class="line">        centroid_update = <span class="literal">False</span></span><br><span class="line">        <span class="comment"># recalculate the centroids </span></span><br><span class="line">        <span class="keyword">for</span> i, centroid <span class="keyword">in</span> enumerate(centroid_coords):</span><br><span class="line">            <span class="comment"># gather all data points for each cluster</span></span><br><span class="line">            cluster_points = []</span><br><span class="line">            <span class="keyword">for</span> k <span class="keyword">in</span> range(n_samples):</span><br><span class="line">                <span class="keyword">if</span> label[k] == i:</span><br><span class="line">                    cluster_points.append(data[k])</span><br><span class="line">            cluster_points = np.concatenate([cluster_points], axis=<span class="number">1</span>)</span><br><span class="line">            <span class="comment"># calculate new centroid</span></span><br><span class="line">            new_centroid_coord = np.mean(cluster_points, axis=<span class="number">0</span>)</span><br><span class="line">            <span class="comment"># see if the centroid change for each cluster</span></span><br><span class="line">            <span class="keyword">if</span> cal_dist(centroid, new_centroid_coord) &gt; <span class="number">1e-5</span>:</span><br><span class="line">                centroid_coords[i] = new_centroid_coord</span><br><span class="line">                centroid_update = <span class="literal">True</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> centroid_update:</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">    <span class="keyword">return</span> labels</span><br><span class="line">                        </span><br></pre></td></tr></table></figure>
+<li><p>Implementation:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">cal_dist</span>(<span class="params">vector1, vector2</span>):</span></span><br><span class="line">    <span class="comment"># euclidian distance </span></span><br><span class="line">    eucl_dist = np.sqrt(np.sum((vector1 - vector2)**<span class="number">2</span>))</span><br><span class="line">    <span class="keyword">return</span> eucl_dist</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">k_means</span>(<span class="params">data, k</span>):</span></span><br><span class="line">    n_samples, n_shape = data.shape</span><br><span class="line">    <span class="comment"># random initialize centroids </span></span><br><span class="line">    centroid_index = np.random.choice(range(n_samples), k)</span><br><span class="line">    centroid_coords = data[centroid_index]</span><br><span class="line">    <span class="comment"># label of each data point</span></span><br><span class="line">    labels = [<span class="number">-1</span>] * n_samples</span><br><span class="line">    <span class="comment"># iterate until centroid no longer change</span></span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(n_samples):</span><br><span class="line">            min_dist = float(<span class="string">&quot;inf&quot;</span>)</span><br><span class="line">            min_cluster_idx = <span class="number">-1</span></span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> range(k):</span><br><span class="line">                dist = cal_dist(data[i], centroid_coords[j])</span><br><span class="line">                <span class="keyword">if</span> dist &lt; min_dist:</span><br><span class="line">                    min_dist = dist</span><br><span class="line">                    min_cluster_idx = k</span><br><span class="line">            <span class="comment"># update cluster index for each point</span></span><br><span class="line">            label[i] = min_cluster_idx</span><br><span class="line">        <span class="comment"># flag indicate if the centroid change of not: stop condition for while loop</span></span><br><span class="line">        centroid_update = <span class="literal">False</span></span><br><span class="line">        <span class="comment"># recalculate the centroids </span></span><br><span class="line">        <span class="keyword">for</span> i, centroid <span class="keyword">in</span> enumerate(centroid_coords):</span><br><span class="line">            <span class="comment"># gather all data points for each cluster</span></span><br><span class="line">            cluster_points = []</span><br><span class="line">            <span class="keyword">for</span> k <span class="keyword">in</span> range(n_samples):</span><br><span class="line">                <span class="keyword">if</span> label[k] == i:</span><br><span class="line">                    cluster_points.append(data[k])</span><br><span class="line">            cluster_points = np.concatenate([cluster_points], axis=<span class="number">1</span>)</span><br><span class="line">            <span class="comment"># calculate new centroid</span></span><br><span class="line">            new_centroid_coord = np.mean(cluster_points, axis=<span class="number">0</span>)</span><br><span class="line">            <span class="comment"># see if the centroid change for each cluster</span></span><br><span class="line">            <span class="keyword">if</span> cal_dist(centroid, new_centroid_coord) &gt; <span class="number">1e-5</span>:</span><br><span class="line">                centroid_coords[i] = new_centroid_coord</span><br><span class="line">                centroid_update = <span class="literal">True</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> centroid_update:</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">    <span class="keyword">return</span> labels</span><br><span class="line">                        </span><br></pre></td></tr></table></figure>
 
 </li>
 </ul>
